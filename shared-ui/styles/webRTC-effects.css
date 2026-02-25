@@ -1,0 +1,107 @@
+:root {
+  --rtc-primary: #4f46e5;
+  --rtc-danger: #ef4444;
+  --rtc-success: #22c55e;
+  --rtc-speed: 0.25s;
+  --rtc-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Participant join */
+.rtc-join {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: rtcJoin 0.3s var(--rtc-ease) forwards;
+}
+
+@keyframes rtcJoin {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Participant leave */
+.rtc-leave {
+  animation: rtcLeave 0.25s var(--rtc-ease) forwards;
+}
+
+@keyframes rtcLeave {
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Video fade in */
+.rtc-video {
+  opacity: 0;
+  transition: opacity 0.4s var(--rtc-ease);
+}
+
+.rtc-video.ready {
+  opacity: 1;
+}
+
+/* Speaking indicator */
+.rtc-speaking {
+  position: relative;
+}
+
+.rtc-speaking::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 8px;
+  border: 2px solid var(--rtc-success);
+  animation: rtcPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes rtcPulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Mic muted */
+.rtc-muted {
+  position: relative;
+}
+
+.rtc-muted::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(239, 68, 68, 0.15);
+  border-radius: 8px;
+}
+
+/* Screen share active */
+.rtc-screen-active {
+  box-shadow: 0 0 0 3px var(--rtc-primary);
+  transition: box-shadow var(--rtc-speed) var(--rtc-ease);
+}
+
+/* Connection lost */
+.rtc-disconnected {
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: opacity var(--rtc-speed) var(--rtc-ease);
+}
+
+/* Network reconnect pulse */
+.rtc-reconnecting {
+  animation: rtcReconnect 1s infinite ease-in-out;
+}
+
+@keyframes rtcReconnect {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

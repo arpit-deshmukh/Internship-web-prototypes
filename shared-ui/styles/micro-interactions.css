@@ -1,0 +1,133 @@
+:root {
+  --micro-speed: 0.2s;
+  --micro-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --micro-primary: #4f46e5;
+  --micro-bg: #e5e7eb;
+}
+
+/* Button press */
+.btn-press {
+  transition: transform var(--micro-speed) var(--micro-ease);
+}
+
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+/* Input focus */
+.input-focus {
+  border: 1px solid var(--micro-bg);
+  transition: border-color var(--micro-speed) var(--micro-ease),
+              box-shadow var(--micro-speed) var(--micro-ease);
+}
+
+.input-focus:focus {
+  outline: none;
+  border-color: var(--micro-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Floating label */
+.field {
+  position: relative;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 8px;
+  border: 1px solid var(--micro-bg);
+}
+
+.field label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  background: white;
+  padding: 0 4px;
+  color: #6b7280;
+  transition: all var(--micro-speed) var(--micro-ease);
+  pointer-events: none;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 12px;
+  color: var(--micro-primary);
+}
+
+/* Toggle switch */
+.toggle {
+  width: 44px;
+  height: 24px;
+  background: var(--micro-bg);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  transition: background var(--micro-speed) var(--micro-ease);
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--micro-speed) var(--micro-ease);
+}
+
+.toggle.active {
+  background: var(--micro-primary);
+}
+
+.toggle.active::before {
+  transform: translateX(20px);
+}
+
+/* Notification slide */
+.notification {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s var(--micro-ease),
+              opacity 0.3s var(--micro-ease);
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: white;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--micro-speed) var(--micro-ease);
+  white-space: nowrap;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
