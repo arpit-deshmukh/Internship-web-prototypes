@@ -6,3 +6,8 @@ It reflects hands-on learning, collaborative development practices, and scalable
 ⚠️ Disclaimer
 All projects included here are independently recreated prototypes for demonstration purposes only.
 No proprietary company code, client assets, confidential data, or internal business logic is exposed in this repository.
+
+
+#smart-crm prototype
+
+https://smart-crm-tew.vercel.app/
